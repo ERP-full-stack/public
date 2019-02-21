@@ -1,6 +1,12 @@
-/**
- * Created by Administrator on 2019/2/20.
- */
-export const alert = () => {
-  alert(123)
+export const getRoutes = (context, ignore) => {
+  const children = []
+  context.keys().forEach(key => {
+    if (key !== ignore) {
+      let arr = context(key).default
+      if (arr && arr.length) {
+        children.push(...arr)
+      }
+    }
+  })
+  return children
 }
